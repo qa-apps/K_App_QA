@@ -42,3 +42,4 @@ public class Tests4 {
     @Test public void b19(){ runBasicCheck(); }
     @Test public void b20(){ runBasicCheck(); }
 }
+// commit note 3 at 2018-06-20T12:00:00
