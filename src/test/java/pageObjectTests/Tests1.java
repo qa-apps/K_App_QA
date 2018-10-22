@@ -62,7 +62,3 @@ public class Tests1 {
     @Test
     public void test_20(){ runBasicCheck(); }
 }
-// commit note 0 at 2018-06-05T12:00:00
-// commit note 5 at 2018-08-03T09:00:00
-// commit note 10 at 2018-09-02T18:00:00
-// commit note 15 at 2018-10-07T08:00:00
