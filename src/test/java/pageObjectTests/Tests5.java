@@ -23,5 +23,3 @@ public class Tests5 extends BaseTest {
     }
 
 }
-// nov commit note 4 at 2018-11-10T14:00:00
-// nov commit note 9 at 2018-11-20T19:00:00
