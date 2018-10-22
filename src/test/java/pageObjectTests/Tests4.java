@@ -21,24 +21,19 @@ public class Tests4 {
         }
     }
 
-    @Test public void b1(){ runBasicCheck(); }
-    @Test public void b2(){ runBasicCheck(); }
-    @Test public void b3(){ runBasicCheck(); }
-    @Test public void b4(){ runBasicCheck(); }
-    @Test public void b5(){ runBasicCheck(); }
-    @Test public void b6(){ runBasicCheck(); }
-    @Test public void b7(){ runBasicCheck(); }
-    @Test public void b8(){ runBasicCheck(); }
-    @Test public void b9(){ runBasicCheck(); }
-    @Test public void b10(){ runBasicCheck(); }
-    @Test public void b11(){ runBasicCheck(); }
-    @Test public void b12(){ runBasicCheck(); }
-    @Test public void b13(){ runBasicCheck(); }
-    @Test public void b14(){ runBasicCheck(); }
-    @Test public void b15(){ runBasicCheck(); }
-    @Test public void b16(){ runBasicCheck(); }
-    @Test public void b17(){ runBasicCheck(); }
-    @Test public void b18(){ runBasicCheck(); }
-    @Test public void b19(){ runBasicCheck(); }
-    @Test public void b20(){ runBasicCheck(); }
+        @Test
+        public void loginTest_wrongCredentials_variant6() {
+            LoginPage loginPage = new LoginPage(driver);
+            loginPage.open();
+            loginPage.login(username, wrongPassword);
+            org.testng.Assert.assertTrue(loginPage.isErrorState());
+        }
+
+        @Test
+        public void loginTest_CorrectCredentials_variant6() {
+            LoginPage loginPage = new LoginPage(driver);
+            loginPage.open();
+            MainPage mainPage = loginPage.login(username, password);
+            org.testng.Assert.assertTrue(mainPage.isOpen());
+        }
 }
