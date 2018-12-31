@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="MasterSuite" parallel="classes" thread-count="4">
+    <listeners>
+        <listener class-name="listeners.Listeners"/>
+    </listeners>
+    <parameter name="email" value="koeluser06@testpro.io"/>
+    <parameter name="password" value="te$t$tudent"/>
+    <parameter name="wrongPassword" value="wrongPassword"/>
+    <parameter name="browser" value="CHROME"/>
+    <test name="AllTests">
+        <classes>
+            <class name="pageObjectTests.PlaylistTest">
+                <methods>
+                    <include name="playlistTests_renamePlaylist_playlistRenamed"/>
+
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
