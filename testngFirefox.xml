@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="MasterSuite" parallel="classes" thread-count="4">
+    <listeners>
+        <listener class-name="listeners.Listeners"/>
+    </listeners>
+    <parameter name="email" value="koeluser06@testpro.io"/>
+    <parameter name="password" value="te$t$tudent"/>
+    <parameter name="wrongPassword" value="wrongPassword"/>
+    <parameter name="browser" value="FIREFOX"/>
+    <test name="AllTests">
+        <classes>
+            <class name="pageObjectTests.LoginTest">
+                <methods>
+                    <exclude name="loginTest_CorrectCredentials_successfulLogin"/>
+                    <include name="loginTest_wrongCredentials_redFrame"/>
+                    <include name="loginTest_CorrectCredentials_successfulLogin1"/>
+                    <include name="loginTest_wrongCredentials_redFrame1"/>
+                    <include name="loginTest_CorrectCredentials_successfulLogin2"/>
+                    <exclude name="loginTest_wrongCredentials_redFrame2"/>
+                </methods>
+            </class>
+            <class name="pageObjectTests.LoginTestA">
+                <methods>
+                    <include name="loginTest_CorrectCredentials_successfulLoginA"/>
+                    <include name="loginTest_wrongCredentials_redFrameA"/>
+                    <include name="loginTest_CorrectCredentials_successfulLogin1A"/>
+                    <include name="loginTest_wrongCredentials_redFrame1A"/>
+                    <include name="loginTest_CorrectCredentials_successfulLogin2A"/>
+                    <include name="loginTest_wrongCredentials_redFrame2A"/>
+                </methods>
+            </class>
+            <class name="pageObjectTests.PlaylistTest">
+                <methods>
+                    <include name="playlistTests_createPlaylist_playlistCreated"/>
+                    <include name="playlistTests_renamePlaylist_playlistRenamed"/>
+                    <include name="playlistTests_createPlaylist_playlistCreated1"/>
+                    <include name="playlistTests_renamePlaylist_playlistRenamed1"/>
+                    <include name="playlistTests_createPlaylist_playlistCreated2"/>
+                    <include name="playlistTests_renamePlaylist_playlistRenamed2"/>
+                </methods>
+            </class>
+            <class name="pageObjectTests.PlaylistTestA">
+                <methods>
+                    <include name="playlistTests_createPlaylist_playlistCreatedA"/>
+                    <include name="playlistTests_renamePlaylist_playlistRenamedA"/>
+                    <include name="playlistTests_createPlaylist_playlistCreated1A"/>
+                    <include name="playlistTests_renamePlaylist_playlistRenamed1A"/>
+                    <include name="playlistTests_createPlaylist_playlistCreated2A"/>
+                    <include name="playlistTests_renamePlaylist_playlistRenamed2A"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
