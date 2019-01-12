@@ -24,3 +24,12 @@ public class BrowserFabric {
                 return getChromedriver();
         }
     }
+    private static WebDriver getOperaDriver() {
+        WebDriverManager.operadriver().setup();
+        return new OperaDriver();
+    }
+
+    private static WebDriver getEdgeDriver() {
+        WebDriverManager.edgedriver().setup();
+        return new EdgeDriver();
+    }
