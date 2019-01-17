@@ -33,3 +33,21 @@ public class BrowserFabric {
         WebDriverManager.edgedriver().setup();
         return new EdgeDriver();
     }
+    private static WebDriver getFirefoxDriver() {
+        WebDriverManager.firefoxdriver().setup();
+        FirefoxOptions options = new FirefoxOptions();
+        options.addArguments("--headless");
+        options.addArguments("--width=1400");
+        options.addArguments("--height=1000");
+        return new FirefoxDriver(options);
+    }
+
+    private static WebDriver getChromedriver() {
+        WebDriverManager.chromedriver().setup();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("window-size=1400,1000");
+//        options.addArguments("--headless");
+        return new ChromeDriver(options);
+    }
+}
+
