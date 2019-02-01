@@ -23,3 +23,15 @@ public class DbAdapter {
         try {
             //STEP 2: Register JDBC driver
             Class.forName(DRIVER);
+
+            //STEP 3: Open a connection
+            System.out.println("Connecting to a selected database...");
+            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            System.out.println("Connected database successfully...");
+
+            //STEP 4: Execute a query
+            System.out.println("Creating table in given database...");
+            statement = connection.createStatement();
+
+            String sql = "SELECT * from playlists p where user_id = " + userId;
+
