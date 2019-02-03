@@ -35,3 +35,13 @@ public class DbAdapter {
 
             String sql = "SELECT * from playlists p where user_id = " + userId;
 
+            var result = statement.executeQuery(sql);
+            while (result.next()) {
+                int id = result.getInt("id");
+                int user_id = result.getInt("user_id");
+                String name = result.getString("name");
+
+                var playlist = new Playlist(id, user_id, name);
+                playlistList.add(playlist);
+            }
+
