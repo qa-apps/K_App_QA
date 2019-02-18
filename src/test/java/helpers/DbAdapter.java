@@ -62,4 +62,20 @@ public class DbAdapter {
             } catch (SQLException se) {
                 se.printStackTrace();
             }//end finally try
+        }//end try
+        System.out.println("Goodbye!");
+        return playlistList;
+    }//end main
+    public static List<Artist> getAllArtists() {
+        List<Artist> artists = new ArrayList<>();
+        final String USERNAME = "dbuser06";
+        final String PASSWORD = "pa$$06";
+        final String URL = "jdbc:mariadb://104.237.9.33/dbkoel";
+        final String DRIVER = "org.mariadb.jdbc.Driver";
+
+        Connection connection = null;
+        Statement statement = null;
+        try {
+            //STEP 2: Register JDBC driver
+            Class.forName(DRIVER);
 
