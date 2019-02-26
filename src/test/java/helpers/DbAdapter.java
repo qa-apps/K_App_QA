@@ -95,6 +95,33 @@ public class DbAdapter {
                 String name = result.getString("name");
                 String image = result.getString("image");
 
+                var artist = new Artist(id, name,image);
+                artists.add(artist);
+            }
+
+        } catch (SQLException | ClassNotFoundException se) {
+            //Handle errors for JDBC
+            se.printStackTrace();
+        } finally {
+            //finally block used to close resources
+            try {
+                if (statement != null) {
+                    connection.close();
+                }
+            } catch (SQLException ignored) {
+            }// do nothing
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }//end finally try
+        }//end try
+        System.out.println("Goodbye!");
+        return artists;
+    }//end main
+
 
 
 
