@@ -163,6 +163,22 @@ public class DbAdapter {
                 if (statement != null) {
                     connection.close();
 
+                }
+            } catch (SQLException ignored) {
+            }// do nothing
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }//end finally try
+        }//end try
+        System.out.println("Goodbye!");
+        return playlist;
+    }//end main
+}
+
 
 
 
