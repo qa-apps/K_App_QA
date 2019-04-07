@@ -33,3 +33,35 @@ public class RenamePlaylistUsingAPIandSelenium {
         var name = faker.funnyName().name();
         var createPlaylistRequest = new CreatePlaylistRequest(name);
         Response response =
+                given()
+                        .baseUri("https://koelapp.testpro.io/")
+                        .basePath("api/playlist")
+                        .header("Content-Type","application/json")
+                        .header("Accept", "application/json")
+                        .header("Authorization",token)
+                        .body(createPlaylistRequest)
+                        .when()
+                        .post()
+                        .then()
+                        .statusCode(200)
+                        .extract()
+                        .response();
+        JsonPath jsonPath = response.jsonPath();
+        var createPlaylistResponse = jsonPath.getObject("$",CreatePlaylistResponse.class);
+        playlistId = createPlaylistResponse.getId();
+
+        driver = BrowserFabric.getWebDriver(BrowserType.CHROME);
+        System.out.println(playlistId);
+    }
+    @AfterMethod
+    public void tearDown(){
+        driver.quit();
+        given()
+                .baseUri("https://koelapp.testpro.io/")
+                .basePath("api/playlist/"+playlistId)
+                .header("Authorization",token)
+                .when()
+                .delete()
+                .then()
+                .extract()
+                .response();
