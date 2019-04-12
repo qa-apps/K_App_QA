@@ -65,3 +65,39 @@ public class RenamePlaylistUsingAPIandSelenium {
                 .then()
                 .extract()
                 .response();
+    }
+    @Test
+    public void renamePlaylist() throws InterruptedException {
+        var newName = faker.cat().name();
+        var loginPage = new LoginPage(driver);
+        loginPage.open();
+        var mainPage = loginPage.login("koeluser06@testpro.io","te$t$tudent");
+        mainPage.renamePlaylist(playlistId+"",newName);
+
+        Response response =
+                given()
+                        .baseUri("https://koelapp.testpro.io/")
+                        .basePath("api/playlist")
+                        .header("Content-Type","application/json")
+                        .header("Accept", "application/json")
+                        .header("Authorization",token)
+                        .when()
+                        .get()
+                        .then()
+                        .statusCode(200)
+                        .extract()
+                        .response();
+        JsonPath jsonPath = response.jsonPath();
+        var createPlaylists = jsonPath.getObject("$",CreatePlaylistResponse[].class);
+        boolean found = false;
+        for (var playlist :  createPlaylists){
+            if(playlist.getId()==playlistId){
+                Assert.assertEquals(playlist.getName(),newName);
+                found=true;
+                break;
+            }
+        }
+        Assert.assertTrue(found);
+    }
+}
+
