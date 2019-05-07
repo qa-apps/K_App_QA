@@ -52,3 +52,28 @@ public class RenamePlaylistUsingAPISeleniumAndDB {
         driver = BrowserFabric.getWebDriver(BrowserType.CHROME);
         System.out.println(playlistId);
     }
+    @AfterMethod
+    public void tearDown(){
+        driver.quit();
+        given()
+                .baseUri("https://koelapp.testpro.io/")
+                .basePath("api/playlist/"+playlistId)
+                .header("Authorization",token)
+                .when()
+                .delete()
+                .then()
+                .extract()
+                .response();
+    }
+    @Test
+    public void renamePlaylist() throws InterruptedException {
+        var newName = faker.cat().name();
+        var loginPage = new LoginPage(driver);
+        loginPage.open();
+        var mainPage = loginPage.login("koeluser06@testpro.io","te$t$tudent");
+        mainPage.renamePlaylist(playlistId+"",newName);
+        var playlist = DbAdapter.getPlaylistById(playlistId);
+        Assert.assertNotNull(playlist);
+        Assert.assertEquals(newName,playlist.getName());
+    }
+}
