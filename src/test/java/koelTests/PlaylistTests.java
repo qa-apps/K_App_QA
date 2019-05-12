@@ -27,5 +27,21 @@ public class PlaylistTests {
     @BeforeMethod
     public void startUp(){
         faker = new Faker();
+        playlistName = faker.artist().name();
+        CreatePlaylistRequest createPlaylistRequest = new CreatePlaylistRequest(playlistName);
+        Response response =
+                given()
+                        .baseUri("https://koelapp.testpro.io/")
+                        .basePath("api/playlist")
+                        .header("Content-Type","application/json")
+                        .header("Accept", "application/json")
+                        .header("Authorization",token)
+                        .body(createPlaylistRequest)
+                        .when()
+                        .post()
+                        .then()
+                        .statusCode(200)
+                        .extract()
+                        .response();
 
 
