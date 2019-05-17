@@ -43,5 +43,28 @@ public class PlaylistTests {
                         .statusCode(200)
                         .extract()
                         .response();
+        JsonPath jsonPath = response.jsonPath();
+        CreatePlaylistResponse createPlaylistResponse = jsonPath.getObject("$",CreatePlaylistResponse.class);
+        playlistId = createPlaylistResponse.getId();
+        Assert.assertEquals(playlistName,createPlaylistResponse.getName());
+        System.out.println(playlistId);
+    }
+    @AfterMethod
+    public void tearDown(){
+        given()
+                .baseUri("https://koelapp.testpro.io/")
+                .basePath("api/playlist/"+playlistId)
+                .header("Authorization",token)
+                .when()
+                .delete()
+                .then()
+                .extract()
+                .response();
+    }
+    @Test
+    public void getPlaylist(){
+
+        Response response =
+
 
 
