@@ -65,6 +65,29 @@ public class PlaylistTests {
     public void getPlaylist(){
 
         Response response =
+                given()
+                        .baseUri("https://koelapp.testpro.io/")
+                        .basePath("api/playlist")
+                        .header("Content-Type","application/json")
+                        .header("Accept", "application/json")
+                        .header("Authorization",token)
+                        .when()
+                        .get()
+                        .then()
+                        .statusCode(200)
+                        .extract()
+                        .response();
+        JsonPath jsonPath = response.jsonPath();
+        CreatePlaylistResponse[] createPlaylists = jsonPath.getObject("$",CreatePlaylistResponse[].class);
+        boolean found = false;
+        for (CreatePlaylistResponse playlist :  createPlaylists){
+            if(playlist.getId()==playlistId){
+                Assert.assertEquals(playlist.getName(),playlistName);
+                found=true;
+                break;
+            }
+
+
 
 
 
