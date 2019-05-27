@@ -27,6 +27,7 @@ public class PlaylistTests {
     @BeforeMethod
     public void startUp(){
         faker = new Faker();
+
         playlistName = faker.artist().name();
         CreatePlaylistRequest createPlaylistRequest = new CreatePlaylistRequest(playlistName);
         Response response =
@@ -86,6 +87,34 @@ public class PlaylistTests {
                 found=true;
                 break;
             }
+        }
+        Assert.assertTrue(found);
+    }
+    @Test
+    public void renamePlaylist(){
+        String updatedName = faker.funnyName().name();
+        RenamePlaylistRequest renamePlaylistRequest = new RenamePlaylistRequest(updatedName);
+        Response response =
+                given()
+                        .baseUri("https://koelapp.testpro.io/")
+                        .basePath("api/playlist/"+playlistId)
+                        .header("Content-Type","application/json")
+                        .header("Accept", "application/json")
+                        .header("Authorization",token)
+                        .body(renamePlaylistRequest)
+                        .when()
+                        .patch()
+                        .then()
+                        .statusCode(200)
+                        .extract()
+                        .response();
+        JsonPath jsonPath = response.jsonPath();
+        CreatePlaylistResponse createPlaylistResponse = jsonPath.getObject("$",CreatePlaylistResponse.class);
+        Assert.assertEquals(createPlaylistResponse.getName(),updatedName);
+
+    }
+}
+
 
 
 
