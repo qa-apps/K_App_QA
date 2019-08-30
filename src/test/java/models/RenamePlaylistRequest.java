@@ -1,10 +1,20 @@
 
 package models;
 
-public class RenamePlaylistRequest {
+public class Tag {
     private String name;
+    private long id;
 
-    public RenamePlaylistRequest(String name) {
+    public Tag(String name, long id) {
         this.name = name;
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public long getId() {
+        return id;
     }
 }
