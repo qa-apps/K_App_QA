@@ -28,3 +28,17 @@ public class LoginPage extends BasePage {
         getLoginButton().click();
         return new MainPage(driver);
 
+    }
+    public void open(){
+        driver.get("https://koelapp.testpro.io/");
+    }
+
+    public boolean isErrorState() {
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".error")));
+        } catch (NoSuchElementException | TimeoutException ignored){};
+
+        return driver.findElements(By.cssSelector(".error")).size()==1;
+    }
+}
+
