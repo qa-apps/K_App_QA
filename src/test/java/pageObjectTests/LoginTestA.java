@@ -28,3 +28,20 @@ public class LoginTestA extends BaseTest{
         Assert.assertTrue(loginPage.isErrorState());
 
 
+    }
+    @Test
+    public void loginTest_CorrectCredentials_successfulLogin1A(){
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.open();
+        MainPage mainPage = loginPage.login(username, password);
+        Assert.assertTrue(mainPage.isOpen());
+    }
+    @Test
+    public void loginTest_wrongCredentials_redFrame1A(){
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.open();
+        loginPage.login(username, wrongPassword);
+        Assert.assertTrue(loginPage.isErrorState());
+    }
+
+
