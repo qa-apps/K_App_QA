@@ -27,3 +27,12 @@ public class PlaylistTest extends BaseTest{
         mainPage.renamePlaylist(playlistId,newName);
         Assert.assertTrue(mainPage.checkPlaylistExist(playlistId,newName));
     }
+    @Test
+    public void playlistTests_createPlaylist_playlistCreated1(){
+        String name = faker.funnyName().name();
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.open();
+        MainPage mainPage = loginPage.login(username, password);
+        String playlistId = mainPage.createPlaylist(name);
+        Assert.assertTrue(mainPage.checkPlaylistExist(playlistId,name));
+    }
