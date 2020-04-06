@@ -1,7 +1,7 @@
 
 package models;
 
-public class Tag {
+class Tag {
     private String name;
     private long id;
 

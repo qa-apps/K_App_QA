@@ -1,3 +1,5 @@
+package hybridTest;
+
 import com.github.javafaker.Faker;
 import enums.BrowserType;
 import helpers.BrowserFabric;
